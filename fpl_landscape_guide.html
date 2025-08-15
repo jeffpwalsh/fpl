@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Premier League Guide</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7b2cbf 0%, #5a189a 100%);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #38003c 0%, #00ff87 100%);
+            padding: 50px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .company-name {
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .main-title {
+            font-size: 4em;
+            font-weight: 900;
+            color: white;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+        
+        .league-info {
+            color: white;
+            font-size: 1.4em;
+            font-weight: 500;
+            margin: 15px 0 10px 0;
+            opacity: 0.95;
+        }
+        
+        .prize-banner {
+            background: #ffd60a;
+            color: #38003c;
+            font-size: 1.3em;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .left-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .section {
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #ffd60a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .section h3 {
+            font-size: 1.8em;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .section.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .how-to-play-section {
+            background: #00ff87 !important;
+            color: #38003c !important;
+            margin-bottom: 30px;
+            text-align: center !important;
+            padding: 50px 40px !important;
+            border: 3px solid #ffd60a !important;
+            border-radius: 15px !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        }
+        
+        .how-to-play-section h3 {
+            color: #38003c !important;
+            margin: 0 auto 40px auto !important;
+            font-size: 2.5em !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            display: block !important;
+            align-items: unset !important;
+            justify-content: center !important;
+        }
+        
+        .how-to-play-section h3 .emoji {
+            font-size: 1em !important;
+            margin-right: 15px !important;
+        }
+        
+        .how-to-play-section p {
+            font-size: 1.8em !important;
+            margin: 30px auto !important;
+            font-weight: 600 !important;
+            line-height: 1.9 !important;
+            max-width: 1000px !important;
+            color: #38003c !important;
+            text-align: center !important;
+            display: block !important;
+        }
+        
+        .section:nth-child(1) {
+            background: #38003c;
+            color: white;
+        }
+        
+        .section:nth-child(1) h3 {
+            color: #ffd60a;
+        }
+        
+        .section:nth-child(2) {
+            background: #00ff87;
+            color: #38003c;
+        }
+        
+        .section:nth-child(2) h3 {
+            color: #38003c;
+        }
+        
+        .section:nth-child(3) {
+            background: #7b2cbf;
+            color: white;
+        }
+        
+        .section:nth-child(3) h3 {
+            color: #ffd60a;
+        }
+        
+        .section:nth-child(4) {
+            background: #ffd60a;
+            color: #38003c;
+        }
+        
+        .section:nth-child(4) h3 {
+            color: #38003c;
+        }
+        
+        .section:nth-child(5) {
+            background: #e91e63;
+            color: white;
+        }
+        
+        .section:nth-child(5) h3 {
+            color: #000000;
+        }
+        
+        .section p {
+            margin: 8px 0;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .scoring-section {
+            background: linear-gradient(135deg, #fff3cd 0%, #d1ecf1 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: #333;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 3px solid #ffd60a;
+            height: fit-content;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .scoring-section h3 {
+            font-size: 2em;
+            margin: 0 0 20px 0;
+            color: #7b2cbf;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .scoring-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            align-content: start;
+        }
+        
+        .scoring-column h4 {
+            font-size: 1.3em;
+            margin: 0 0 15px 0;
+            color: #7b2cbf;
+            border-bottom: 2px solid #7b2cbf;
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .scoring-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(123, 44, 191, 0.1);
+            font-size: 1.1em;
+        }
+        
+        .points {
+            font-weight: bold;
+            color: white;
+            background: #38003c;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .golden-rules-section {
+            background: #38003c;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 3px solid #ffd60a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .golden-rules-section h3 {
+            font-size: 1.8em;
+            margin: 0 0 20px 0;
+            color: #ffd60a;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        .golden-rules {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .rule {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border-left: 4px solid #7b2cbf;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .rule-number {
+            background: #ffd60a;
+            color: #7b2cbf;
+            font-weight: bold;
+            font-size: 1.2em;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .rule-text {
+            font-size: 1.1em;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .bonus-tip {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7b2cbf;
+            font-weight: 500;
+            font-style: italic;
+            margin: 0;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .link-section {
+            background: #7b2cbf;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .link-section h3 {
+            font-size: 1.8em;
+            margin: 0 0 15px 0;
+            color: #ffd60a;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .link-text {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        .app-text {
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .fpl-link {
+            color: #7b2cbf;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: #ffd60a;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .fpl-link:hover {
+            background: #ffed4a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2.5em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .scoring-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">FRESH AS A DAY OFF</h1>
+            <div class="league-info">Fantasy Premier League • Round 2</div>
+            <div class="prize-banner">🏆 WIN A FREE DAY OFF 🏖️</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="left-section">
+                <div class="section">
+                    <h3><span class="emoji">👥</span> Who's in?</h3>
+                    <p>Everyone at Fresh Projects (even if you don't know football!)</p>
+                </div>
+                
+                <div class="section">
+                    <h3><span class="emoji">🎯</span> What's the game?</h3>
+                    <p>Pick 15 Premier League players within a £100m budget.</p>
+                    <p>Earn points based on the real-life match performances of your team.</p>
+                </div>
+                
+                <div class="section">
+                    <h3><span class="emoji">📅</span> When's it on?</h3>
+                    <p><strong>Season:</strong> August → May (38 gameweeks)</p>
+                    <p><strong>Deadline:</strong> 90 mins before first match of each gameweek</p>
+                </div>
+                
+                <div class="section">
+                    <h3><span class="emoji">🏆</span> Why's it on?</h3>
+                    <p>Interact with your colleagues in a fun and competitive way.</p>
+                    <p><strong>Win a FREE DAY OFF! 😎</p>
+                </div>
+            </div>
+            
+            <div class="scoring-section">
+                <h3>📊 FPL Scoring Cheatsheet</h3>
+                <div class="scoring-grid">
+                    <div>
+                        <h4>Points Gained ✅</h4>
+                        <div class="scoring-item">
+                            <span>Goal (Forward)</span>
+                            <span class="points">+4</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Goal (Midfielder)</span>
+                            <span class="points">+5</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Goal (Defender/GK)</span>
+                            <span class="points">+6</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Assist</span>
+                            <span class="points">+3</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Clean Sheet (DEF/GK)</span>
+                            <span class="points">+4</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Playing >60 mins</span>
+                            <span class="points">+2</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4>Points Lost ❌</h4>
+                        <div class="scoring-item">
+                            <span>Yellow Card</span>
+                            <span class="points">-1</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Red Card</span>
+                            <span class="points">-3</span>
+                        </div>
+                        <div class="scoring-item">
+                            <span>Own Goal</span>
+                            <span class="points">-2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section how-to-play-section">
+            <h3><span class="emoji">🛠️</span> How to play</h3>
+            <p>Pick your 15 players (2 GKs, 5 DEF, 5 MID, 3 FWD)</p>
+            <p>Set your starting XI each week</p>
+            <p>Pick a captain (double points)</p>
+            <p>Use your 1 free transfer each week to swap players</p>
+            <p>Use chips (Wildcard, Triple Captain, Bench Boost, Free Hit) strategically</p>
+        </div>
+        
+        <div class="golden-rules-section">
+            <h3>🥇 3 Golden Rules for Beginners</h3>
+            <div class="golden-rules">
+                <div class="rule">
+                    <span class="rule-number">1</span>
+                    <span class="rule-text">Check your team before the weekly deadline – swap injured/suspended players.</span>
+                </div>
+                <div class="rule">
+                    <span class="rule-number">2</span>
+                    <span class="rule-text">Use your free transfer – 1 per week, keeps your team fresh.</span>
+                </div>
+                <div class="rule">
+                    <span class="rule-number">3</span>
+                    <span class="rule-text">Captain wisely – captain's points are doubled, so pick your star!</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="link-section">
+            <h3>🚀 Join Fresh As A Day Off</h3>
+            <p class="link-text">Auto-join our league: <a href="https://fantasy.premierleague.com/leagues/auto-join/ioj1hf" target="_blank" rel="noopener" class="fpl-link">Click Here to Join</a></p>
+            <p class="app-text">League Code: <strong>ioj1hf</strong></p>
+            <p class="app-text">Or create your team first at: fantasy.premierleague.com</p>
+        </div>
+    </div>
+</body>
+</html>
